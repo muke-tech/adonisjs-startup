@@ -2,20 +2,37 @@
 
 Adonisjs 框架
 
-## 项目启动
+## Start
 
+项目启动
 ```bash
+# 安装依赖
 pnpm install
+
+# 项目启动
 pnpm dev
 ```
 
-## Auth
+数据表迁移和填充
+```bash
+# 生成数据库，并迁移数据表结构（生成的数据库文件在 tmp/db.sqlite3
+node ace migration:run
 
-获取 token（查找 user id 为 1 的用户）: http://localhost:3333/token
-
-
-用户登录，增加一个 Header，其中 token 的值为上一步获取的。
+# 数据填充
+node ace db:seed
 ```
-Authorization: Bearer NA.evQPesH_uSJiXo2RHB-alVlMc8bL5Uu7djoTmiF2FpUQtRlHL5PeK0053nWj
-```
 
+## 常见通用接口
+
+以下列出项目中常见的通用接口，可基于上面修改
+
+| 接口             | Method | URL            | 说明                                        |
+| ---------------- | ------ | -------------- | ------------------------------------------- |
+| 登录             | `POST` | `/api/login`   | 登录后获取 Token                            |
+| 当前登录用户信息 | `GET`  | `/api/user/me` | 请求头需包含  `Authorization: Bearer TOKEN` |
+
+登录
+![](docs/login.png)
+
+获取信息
+![](docs/me.png)

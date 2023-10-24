@@ -19,21 +19,12 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import User from 'App/Models/User'
 
 Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.get('/token', async ({ auth }) => {
-  const user = await User.find(1)
-
-  const token = await auth.use('api').generate(user)
-
-  return token
-})
-
-Route.get('/info', async ({ auth }) => {
-  await auth.use('api').authenticate()
-  return auth.use('api').user!
-})
+Route.group(() => {
+  Route.post('/login', 'AuthController.login').as('login')
+  Route.get('/user/me', 'UsersController.me').as('users.me')
+}).prefix('api')
