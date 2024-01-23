@@ -19,6 +19,25 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import Http from 'App/Helper/Http'
+
+Route.get('/http', async () => {
+  const http = new Http('appkey')
+
+  return http.post({
+    c: 2,
+    a: {
+      b: 1,
+      a: 2
+    }
+  })
+})
+
+// 用于回显请求详情
+Route.any('/echo', async (request) => {
+
+  return request
+})
 
 Route.get('/', async () => {
   return { hello: 'world' }

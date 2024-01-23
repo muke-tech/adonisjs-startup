@@ -4,6 +4,12 @@ Adonisjs 框架
 
 ## Start
 
+依赖
+
+- nodejs 版本：v20
+- 包管理器：pnpm
+
+
 项目启动
 ```bash
 # 安装依赖
